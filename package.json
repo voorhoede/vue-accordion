@@ -1,14 +1,35 @@
 {
   "name": "@voorhoede/vue-accordion",
   "version": "0.1.0",
+  "description": "Behavioural and accessible accordion component",
+  "author": "Voorhoede",
   "private": false,
+  "license": "MIT",
   "main": "./dist/vueaccordion.common.js",
+  "engines": {
+    "node": ">= 10.16.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-bundle": "vue-cli-service build --target lib --name vueaccordion ./src/app.vue",
     "lint": "vue-cli-service lint"
   },
+  "homepage": "https://github.com/voorhoede/vue-accordion#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voorhoede/vue-accordion"
+  },
+  "bugs": {
+    "url": "https://github.com/voorhoede/vue-accordion/issues"
+  },
+  "keywords": [
+    "accordion",
+    "expandable",
+    "vue",
+    "vuejs",
+    "accessible"
+  ],
   "files": [
     "dist/*",
     "src/*",
