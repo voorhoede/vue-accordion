@@ -40,7 +40,7 @@
     },
     methods: {
       onButtonClick() {
-        this.$emit('open', this.index)
+        this.$parent.$emit('open', this)
       },
     },
     watch: {

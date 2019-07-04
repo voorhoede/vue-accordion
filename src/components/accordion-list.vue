@@ -1,50 +1,34 @@
 <template>
-  <div @keydown.up.down.35.36.9="onKeyDown">
-    <accordion-item
-      v-for="(item, index) in items" 
-      :key="item.title"
-      :titleSlug="item.slug"
-      :index="index"
-      :open="openIndex === index"
-      :hasFocus="focusIndex === index"
-      @open="onOpen">
-
-      <template v-slot:accordion-item-header>
-        {{ item.title }}
-      </template>
-
-      <template v-slot:accordion-item-panel>
-        <div v-html="item.body"></div>
-      </template>
-    </accordion-item>
+  <div @keydown.up.down.35.36.9="onKeyDown" ref="list">
+    <slot :openIndex="openIndex" :focusIndex="focusIndex" />
   </div>
 </template>
 
 <script>
-  import AccordionItem from './accordion-item'
-
   export default {
-    components: { AccordionItem },
-    props: {
-      items: {
-        type: Array,
-        required: true
-      }
-    },
     data() {
       return {
         focusIndex: null,
         openIndex: null
       }
     },
+
     computed: {
       numberOfAccordionItems() {
-        return this.items.length - 1
+        return this.$refs.list.childElementCount - 1
       }
     },
+
+    mounted() {
+      this.$on("open", this.onOpen)
+    },
+
     methods: {
-      onOpen(index) {
-        this.openIndex = index
+      /**
+       * @param {obj} VueComponent The component that initiated the emitted event.
+       */
+      onOpen(obj) {
+        this.openIndex = Number(obj.$props.index)
       },
 
       onKeyDown(event) {

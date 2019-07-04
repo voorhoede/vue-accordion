@@ -4,21 +4,61 @@
 
     <section class="example">
       <h2>Default accordion</h2>
-      <accordion-list :items="accordionData" />
+
+      <accordion-list>
+        <template v-slot:default="{ openIndex, focusIndex }">
+          <accordion-item 
+            v-for="(item, index) in accordionData" 
+            :key="item.title"
+            :titleSlug="item.slug"
+            :open="openIndex === index"
+            :hasFocus="focusIndex === index"
+            :index="index">
+            
+            <template v-slot:accordion-item-header>
+              {{ item.title }}
+            </template>
+
+            <template v-slot:accordion-item-panel>
+              <div v-html="item.body"></div>
+            </template>
+          </accordion-item>
+        </template>
+      </accordion-list>
     </section>
 
     <section class="example">
       <h2>Accordion with styling</h2>
-      <accordion-list :items="accordionData" class="accordion-list" />
+      <accordion-list class="accordion-list">
+        <template v-slot:default="{ openIndex, focusIndex }">
+          <accordion-item 
+            v-for="(item, index) in accordionData" 
+            :key="item.title"
+            :titleSlug="item.slug"
+            :open="openIndex === index"
+            :hasFocus="focusIndex === index"
+            :index="index">
+            
+            <template v-slot:accordion-item-header>
+              {{ item.title }}
+            </template>
+
+            <template v-slot:accordion-item-panel>
+              <div v-html="item.body"></div>
+            </template>
+          </accordion-item>
+        </template>
+      </accordion-list>
     </section>
   </div>
 </template>
 
 <script>
 import AccordionList from "./components/accordion-list";
+import AccordionItem from "./components/accordion-item";
 
 export default {
-  components: { AccordionList },
+  components: { AccordionList, AccordionItem },
   data() {
     return {
       accordionData: [
