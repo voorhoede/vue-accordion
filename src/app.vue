@@ -5,48 +5,27 @@
     <section class="example">
       <h2>Default accordion</h2>
 
-      <accordion-list>
-        <template v-slot:default="{ openIndex, focusIndex }">
-          <accordion-item 
-            v-for="(item, index) in accordionData" 
-            :key="item.title"
-            :titleSlug="item.slug"
-            :open="openIndex === index"
-            :hasFocus="focusIndex === index"
-            :index="index">
-            
-            <template v-slot:accordion-item-header>
-              {{ item.title }}
-            </template>
+      <accordion-list :items="accordionData">
+        <template v-for="item in accordionData" v-slot:[item.id]>
+          {{ item.title }}
+        </template>
 
-            <template v-slot:accordion-item-panel>
-              <div v-html="item.body"></div>
-            </template>
-          </accordion-item>
+        <template v-for="item in accordionData" v-slot:[item.slug]>
+          <div v-html="item.body" :key="item.id" :id="item.slug" />
         </template>
       </accordion-list>
     </section>
 
     <section class="example">
       <h2>Accordion with styling</h2>
-      <accordion-list class="accordion-list">
-        <template v-slot:default="{ openIndex, focusIndex }">
-          <accordion-item 
-            v-for="(item, index) in accordionData" 
-            :key="item.title"
-            :titleSlug="item.slug"
-            :open="openIndex === index"
-            :hasFocus="focusIndex === index"
-            :index="index">
-            
-            <template v-slot:accordion-item-header>
-              {{ item.title }}
-            </template>
 
-            <template v-slot:accordion-item-panel>
-              <div v-html="item.body"></div>
-            </template>
-          </accordion-item>
+      <accordion-list :items="accordionData" class="accordion-list">
+        <template v-for="item in accordionData" v-slot:[item.id]>
+          {{ item.title }}
+        </template>
+
+        <template v-for="item in accordionData" v-slot:[item.slug]>
+          <div v-html="item.body" :key="item.id" :id="item.slug" />
         </template>
       </accordion-list>
     </section>
@@ -55,32 +34,35 @@
 
 <script>
 import AccordionList from "./components/accordion-list";
-import AccordionItem from "./components/accordion-item";
 
 export default {
-  components: { AccordionList, AccordionItem },
+  components: { AccordionList },
   data() {
     return {
       accordionData: [
         {
+          id: "1000",
           slug: "platonis-illi-et-deinceps",
           title: "Platonis illi et deinceps?",
           body:
             '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae autem degendae ratio maxime quidem illis placuit quieta. Suam denique cuique naturam esse ad vivendum ducem. <a href="http://loripsum.net/" target="_blank">Mihi enim satis est, ipsis non satis.</a> Quid, si reviviscant Platonis illi et deinceps qui eorum auditores fuerunt, et tecum ita loquantur? <p><p><b>Cave putes quicquam esse verius.</b> <i>Non laboro, inquit, de nomine.</i> Negat enim summo bono afferre incrementum diem. Vide igitur ne non debeas verbis nostris uti, sententiis tuis. <i>Scrupulum, inquam, abeunti;</i> <a href="http://loripsum.net/" target="_blank">Ratio quidem vestra sic cogit.</a> </p><p><b>Tu vero, inquam, ducas licet, si sequetur;</b> Est autem officium, quod ita factum est, ut eius facti probabilis ratio reddi possit. <i>Tum Triarius: Posthac quidem, inquit, audacius.</i> Duo Reges: constructio interrete. <b>Non igitur bene.</b> <a href="http://loripsum.net/" target="_blank">Faceres tu quidem, Torquate, haec omnia;</a> </p>'
         },
         {
+          id: "1001",
           slug: "fortitudinis-quaedam",
           title: "Fortitudinis quaedam?",
           body:
             "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quicquid enim a sapientia proficiscitur, id continuo debet expletum esse omnibus suis partibus; Quid, de quo nulla dissensio est? Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur. Hoc dixerit potius Ennius: Nimium boni est, cui nihil est mali. <mark>Istic sum, inquit.</mark> Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium. Duo Reges: constructio interrete. Sed quid attinet de rebus tam apertis plura requirere? Sed mehercule pergrata mihi oratio tua. Expressa vero in iis aetatibus, quae iam confirmatae sunt. </p><p>Fortitudinis quaedam praecepta sunt ac paene leges, quae effeminari virum vetant in dolore. Primum in nostrane potestate est, quid meminerimus? Quid censes in Latino fore? Causa autem fuit huc veniendi ut quosdam hinc libros promerem. Propter nos enim illam, non propter eam nosmet ipsos diligimus. </p>"
         },
         {
+          id: "1002",
           slug: "voluptas-percipitur-ex",
           title: "Voluptas percipitur ex?",
           body:
             "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idem iste, inquam, de voluptate quid sentit? Tu vero, inquam, ducas licet, si sequetur; Tum Triarius: Posthac quidem, inquit, audacius. Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. </p><p>Me igitur ipsum ames oportet, non mea, si veri amici futuri sumus. Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis.</p>"
         },
         {
+          id: "1003",
           slug: "theophrastum-tamen-adhibeamus",
           title: "Theophrastum tamen adhibeamus?",
           body:

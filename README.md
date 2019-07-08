@@ -1,9 +1,12 @@
-# Accordion
+# vue-accordion
 
-* A behavioural and accessible accordion component.
-* Keyboard can be used to navigate the items.
-* Serves a static page generated with [Nuxtjs](https://nuxtjs.org/).
+A behavioural and accessible accordion component.
 
+## Install
+
+```
+$ npm install @voorhoede/vue-accordion
+```
 
 ## Demo
 
