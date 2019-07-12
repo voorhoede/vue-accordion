@@ -38,7 +38,6 @@
     "*.js"
   ],
   "dependencies": {
-    "core-js": "^3.1.4",
     "vue": "^2.6.10"
   },
   "devDependencies": {
