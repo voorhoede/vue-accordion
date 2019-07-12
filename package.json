@@ -1,6 +1,6 @@
 {
   "name": "@voorhoede/vue-accordion",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Behavioural and accessible accordion component",
   "author": "Voorhoede",
   "private": false,
@@ -38,7 +38,6 @@
     "*.js"
   ],
   "dependencies": {
-    "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
   "devDependencies": {
